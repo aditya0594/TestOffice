@@ -21,7 +21,16 @@ public class LandingPageTest extends TestBase {
        LandingPage.get_started_screen_After_signup();
        LandingPage.hamburger_Account_Setting();
        LandingPage.verify_account_name();
-
+    }
+    @Test(priority = 2, enabled = true)
+    public void Delete_user() throws InterruptedException {
+        LandingPage.Normal_login();
+        LandingPage.get_started_screen();
+        Thread.sleep(2000);
+        LandingPage.hamburger_Account_Setting();
+        Thread.sleep(2000);
+        LandingPage.delete_account();
+        LandingPage.delete_account_ok_popup();
 
     }
 

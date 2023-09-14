@@ -2,6 +2,7 @@ package Base;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.ActionOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
@@ -9,18 +10,27 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.Pause;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
+import org.xml.sax.Locator;
 import utils.AppConfigTags;
 import utils.CommonUtils;
 import utils.Constants;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 
 
 public class TestBase {
@@ -29,7 +39,8 @@ public class TestBase {
     public static WebDriver webdriver;
 
     //public LandingPageAndroid LandingPage;
-//appium -a 127.0.0.1 -p 4723 --base-path /wd/hub –allow-cors
+//appium -a 127.0.0.1 -p 4723 --base-path /wd/hub –-allow-cors
+   // appium -a 127.0.0.1 -p 4723 --base-path /wd/hub --allow-cors --use-plugins=gestures
     String drivertype ="appium";
     /*@BeforeSuite
     public void beforeSuitSetup() throws IOException, InterruptedException {
@@ -37,7 +48,7 @@ public class TestBase {
         Thread.sleep(15000);
     }*/
     @BeforeMethod
-    public void setUp() throws IOException, InterruptedException {
+    public void setUp() throws IOException, InterruptedException, URISyntaxException {
         switch(drivertype){
             case("appium"):
                 System.out.println("Setup TestCase");
@@ -68,16 +79,15 @@ public class TestBase {
 
 	@AfterMethod
 	public void Aftertest() throws InterruptedException {
-            driver.closeApp();
+
 	}
 	@AfterSuite
 	public void tearDown() {
-            driver.closeApp();
-            CommonUtils.killServer();
+
         }
     @AfterTest
     public void closeApp(){
-            driver.closeApp();
+
         }
  /*   @AfterClass
     public void appiumEnd() throws IOException, InterruptedException {
@@ -87,10 +97,38 @@ public class TestBase {
         }
     }*/
     public static void waitForElement(By element) {
-        WebDriverWait w = new WebDriverWait(driver,3);
-        w.until(ExpectedConditions.presenceOfElementLocated ((By) element));
+        WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(10));
+        w.until(ExpectedConditions.presenceOfElementLocated((By) element));
     }
 
+    public static void swipe(int startX, int startY,int endX,int endY) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        HashMap<String, Object> scrollObject = new HashMap<>();
+        scrollObject.put("direction", "down"); // Optionally you can still provide a direction
+        scrollObject.put("startX", startX);
+        scrollObject.put("startY", startY);
+        scrollObject.put("endX", endX);
+        scrollObject.put("endY", endY);
+        js.executeScript("mobile: dragGesture", scrollObject);
+        // Slide_touch_mobile(531, 51, 463, 1094);
+
+    }
+     public static void click_Point(By Locator) {
+        WebElement Button = driver.findElement(Locator);
+        Point source = Button.getLocation();
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence sequence = new Sequence(finger, 1);
+// Move the finger to the desired location
+        sequence.addAction(finger.createPointerMove(Duration.ofMillis(1), PointerInput.Origin.viewport(), source.x, source.y));
+// Press down to start the touch
+        sequence.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+// Wait for a brief moment to simulate the duration of a tap
+        sequence.addAction(new Pause(finger, Duration.ofMillis(100)));
+// Release to end the touch
+        sequence.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+// Perform the entire sequence
+        driver.perform(Arrays.asList(sequence));
+    }
     public void scrollDown() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollBy(0,250)");
@@ -102,20 +140,21 @@ public class TestBase {
     public static void Tap_screen (int startx, int starty) throws InterruptedException {
        // int startx = 568;
        // int starty = 2140 ;
-        TouchAction action = new  TouchAction(driver);
+     /*   TouchAction action = new  TouchAction(driver);
         action.tap(PointOption.point(startx, starty))
                 .release()
-                .perform();
+                .perform();*/
     }
     public static void Slide_touch (int startx, int starty, int endX, int endY ) throws InterruptedException {
         // int startx = 568;
         // int starty = 2140 ;
+/*
         TouchAction action = new  TouchAction(driver);
         action.press(PointOption.point(startx, starty))
                 .waitAction()
                 .moveTo(PointOption.point(endX, endY))
                 .release()
-                .perform();
+                .perform();*/
     }
 
     public static void captureScreenShots(String Feature_name)throws IOException {

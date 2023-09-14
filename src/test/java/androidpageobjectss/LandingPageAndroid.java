@@ -89,12 +89,8 @@ public class LandingPageAndroid extends ScreenBase {
     By Confirm_btn = By.id("com.hp.impulse.sprocket:id/bt_confirm_delete");
     //com.hp.impulse.sprocket:id/tv_detail
     By Content_delete_pop = By.id("com.hp.impulse.sprocket:id/tv_detail");
-
     By Account_deleted_ok_btn = By.id("com.hp.impulse.sprocket:id/bt_ok");
     By Account_deleted= By.id("com.hp.impulse.sprocket:id/tv_alert");
-
-
-
     public void Sign_up() {
         driver.findElement(Full_Name).sendKeys(FIRSTNAME);
         driver.findElement(Email).sendKeys(EMAIL);
@@ -145,7 +141,7 @@ public class LandingPageAndroid extends ScreenBase {
         System.out.println("Text of password" + pas);
         Thread.sleep(2000);
         driver.findElement(Password_Eye_btn).click();
-        Thread.sleep(6000);
+        Thread.sleep(2000);
         String eyepas = driver.findElement(Password).getAttribute("text");
         System.out.println("Seen Password" + eyepas);
     }
@@ -220,11 +216,16 @@ public class LandingPageAndroid extends ScreenBase {
         driver.findElement(Login_btn).click();
         driver.findElement(Explore_Sprocket).click();
     }
-    public void hamburger_Account_Setting() {
+    public void hamburger_Account_Setting() throws InterruptedException {
+
         waitForElement(Hamburger_Menu);
         driver.findElement(Hamburger_Menu).click();
         waitForElement(ham_Account_Setting);
-        driver.findElement(ham_Account_Setting).click();
+        //326 849
+        Tap_screen(326,849);
+
+
+        //driver.findElement(ham_Account_Setting).click();
     }
     public void verify_account_name() throws InterruptedException {
         String account_setting_username = driver.findElement(Account_username).getText();
@@ -329,7 +330,7 @@ public class LandingPageAndroid extends ScreenBase {
         String Continue_text = driver.findElement(Continue_Button).getText();
         Assert.assertEquals(Continue_text, "Continue");
         driver.findElement(Continue_Button).click();
-        Thread.sleep(5000);
+
 
     }
 
@@ -363,7 +364,7 @@ public class LandingPageAndroid extends ScreenBase {
     
     public void exit_app() {
 
-        driver.closeApp();
+        driver.close();
     }
 }
 
