@@ -34,14 +34,19 @@ public class CommonUtils {
 		path = System.getProperty("user.dir");
     	caps.setCapability("platformName", "Android");
 		caps.setCapability("deviceName", "Galaxy s22 FE");
-		caps.setCapability("app", "C:\\Users\\Aditya Pawar\\eclipse-workspace\\TestDemoQA\\src\\test\\app\\WavarApp_V_1.107_QA.apk");
+		//caps.setCapability("app", "C:\\Users\\Aditya Pawar\\eclipse-workspace\\TestDemoQA\\src\\test\\app\\WavarApp_V_1.107_QA.apk");
         //path+"//app//HP600AndMaintenanceRealeaseBuildDate.17.10.2022v2.82.7.apk"
 		caps.setCapability("autoGrantPermissions", "true");
         //hide the keyboard
         //caps.setCapability("unicodeKeyboard", true);
       //  caps.setCapability("resetKeyboard", true);
         //caps.setCapability("fullReset", "true");
-        caps.setCapability("udid","ZD2228Q6RB");
+        //Specify appPackage and appActivity for the app you are automating
+        //caps.setCapability("appPackage", "com.example.yourapp");  // Replace with your app's package name
+        caps.setCapability("appActivity", "com.wavar.view.activity.PostCommentReplyActivity - Wavar");   // Replace with your main activity's name
+        caps.setCapability("autoGrantPermissions", "true");
+        caps.setCapability("udid", "RZ8NA1P2S8D");
+        caps.setCapability("automationName", "UiAutomator2");
         caps.setCapability(MobileCapabilityType.AUTOMATION_NAME,AutomationName.ANDROID_UIAUTOMATOR2);
         //driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
         driver = new AndroidDriver(new URI("http://127.0.0.1:4723/wd/hub").toURL(), caps);
