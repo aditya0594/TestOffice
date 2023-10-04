@@ -113,6 +113,19 @@ public class TestBase {
         // Slide_touch_mobile(531, 51, 463, 1094);
 
     }
+    public static void swipeUp(int startX, int startY,int endX,int endY) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        HashMap<String, Object> scrollObject = new HashMap<>();
+        scrollObject.put("direction", "up"); // Optionally you can still provide a direction
+        scrollObject.put("startX", startX);
+        scrollObject.put("startY", startY);
+        scrollObject.put("endX", endX);
+        scrollObject.put("endY", endY);
+        js.executeScript("mobile: dragGesture", scrollObject);
+        // Slide_touch_mobile(531, 51, 463, 1094);
+
+    }
+
      public static void click_Point(By Locator) {
         WebElement Button = driver.findElement(Locator);
         Point source = Button.getLocation();
