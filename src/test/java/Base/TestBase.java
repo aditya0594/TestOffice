@@ -33,6 +33,8 @@ import java.util.Date;
 import java.util.HashMap;
 
 
+
+
 public class TestBase {
 
     public static AppiumDriver driver;
@@ -101,6 +103,7 @@ public class TestBase {
         w.until(ExpectedConditions.presenceOfElementLocated((By) element));
     }
 
+
     public static void swipe(int startX, int startY,int endX,int endY) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         HashMap<String, Object> scrollObject = new HashMap<>();
@@ -125,6 +128,41 @@ public class TestBase {
         // Slide_touch_mobile(531, 51, 463, 1094);
 
     }
+    public static void pressAndRelease(int startX, int startY, int endX,int endY) {
+        // Create a pointer input (finger simulation)
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+    // Press (at startX, startY)
+        Sequence pressSequence = new Sequence(finger, 0);
+        pressSequence.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), startX, startY));
+        pressSequence.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+    // Perform the press sequence
+        driver.perform(Arrays.asList(pressSequence));
+    // Move (or swipe) to (endX, endY) after pressing down
+        Sequence moveSequence = new Sequence(finger, 0);
+        moveSequence.addAction(finger.createPointerMove(Duration.ofMillis(1000), PointerInput.Origin.pointer(), endX, endY));
+    // Release
+        Sequence releaseSequence = new Sequence(finger, 1);
+        releaseSequence.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+// Perform the move and release sequences
+        driver.perform(Arrays.asList(moveSequence, releaseSequence));
+
+    }
+    public static void moveTo(int startX, int startY) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        HashMap<String, Object> swipeObject = new HashMap<>();
+        swipeObject.put("action", "moveTo");
+        swipeObject.put("x", startX); // ending x-coordinate
+        swipeObject.put("y", startY); // ending y-coordinate
+        js.executeScript("mobile: touchAction", swipeObject);
+    }
+    public static void release(int startX, int startY) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        HashMap<String, Object> releaseObject = new HashMap<>();
+        releaseObject.put("action", "release");
+        js.executeScript("mobile: touchAction", releaseObject);
+    }
+
+
 
      public static void click_Point(By Locator) {
         WebElement Button = driver.findElement(Locator);

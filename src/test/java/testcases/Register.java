@@ -39,7 +39,6 @@ public class Register extends TestBase {
     By Account_deleted= By.id("com.hp.impulse.sprocket:id/tv_alert");
 
     public static void Slide_touch_mobile (int startx, int starty, int endX, int endY ) throws InterruptedException {
-
     }
     public static void Select_lang() {
         String SelectYourLang = driver.findElement(pagetilte).getText();
@@ -57,8 +56,8 @@ public class Register extends TestBase {
         waitForElement(language_btn_numberScreen);
         String numberscreen_language  =driver.findElement(language_btn_numberScreen).getText();
         Assert.assertEquals("English",numberscreen_language);
-
     }
+
     public void enterNumber() throws InterruptedException, IOException {
         driver.findElement(Enter_Number).click();
         Thread.sleep(3000);
@@ -72,9 +71,7 @@ public class Register extends TestBase {
         Assert.assertEquals("Send OTP",sendOTPVerifyText);
         driver.findElement(sendOTP).click();
         Thread.sleep(10000);
-
     }
-
     public void Notificationbaropen() throws InterruptedException {
         swipe(531, 51, 730, 1781);
     }
@@ -95,7 +92,6 @@ public class Register extends TestBase {
             String OTP3 = (String) opt.get(3);
             String OTP4 = (String) opt.get(4);
             swipe(257,2328, 448, 70);
-
             driver.findElement(onenumberOTP).sendKeys(OTP1);
             driver.findElement(twonumberOTP).sendKeys(OTP2);
             driver.findElement(threenumberOTP).sendKeys(OTP3);
