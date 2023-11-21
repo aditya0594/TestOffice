@@ -1,6 +1,6 @@
 package testcases;
 
-import testcases.Base.TestBase;
+import Base.TestBase;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;

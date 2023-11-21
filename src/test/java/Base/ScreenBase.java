@@ -1,4 +1,4 @@
-package testcases.Base;
+package Base;
 
 public class ScreenBase extends TestBase {
 

@@ -1,4 +1,4 @@
-package testcases.Base;
+package Base;
 
 import io.appium.java_client.AppiumDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
