@@ -1,6 +1,6 @@
 package testcases;
 
-import Base.TestBase;
+import testcases.Base.TestBase;
 import androidpageobjectss.DeletePageAndroid;
 import androidpageobjectss.LandingPageAndroid;
 import org.testng.annotations.Test;

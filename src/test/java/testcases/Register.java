@@ -1,10 +1,7 @@
 package testcases;
 
-import Base.TestBase;
+import testcases.Base.TestBase;
 
-import com.gargoylesoftware.htmlunit.javascript.host.Touch;
-import io.appium.java_client.touch.TapOptions;
-import io.appium.java_client.touch.offset.ElementOption;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;

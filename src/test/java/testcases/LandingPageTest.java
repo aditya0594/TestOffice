@@ -1,7 +1,7 @@
 
 package testcases;
 
-import Base.TestBase;
+import testcases.Base.TestBase;
 import androidpageobjectss.LandingPageAndroid;
 import org.testng.annotations.Test;
 

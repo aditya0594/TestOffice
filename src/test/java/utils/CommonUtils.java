@@ -46,7 +46,7 @@ public class CommonUtils {
         caps.setCapability("appActivity", "com.wavar.view.activity.PostCommentReplyActivity - Wavar");   // Replace with your main activity's name
         //caps.setCapability("app", "C:\\Users\\Aditya Pawar\\eclipse-workspace\\TestDemoQA\\src\\test\\app\\WavarApp_V_1.107_QA.apk");
         caps.setCapability("autoGrantPermissions", "true");
-        caps.setCapability("udid", "192.168.29.165:5050");
+        caps.setCapability("udid", "192.168.1.110:5050");
         caps.setCapability("automationName", "UiAutomator2");
         caps.setCapability(MobileCapabilityType.AUTOMATION_NAME,AutomationName.ANDROID_UIAUTOMATOR2);
         //driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);

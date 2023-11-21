@@ -1,6 +1,6 @@
 package androidpageobjectss;
 
-import Base.TestBase;
+import testcases.Base.TestBase;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
