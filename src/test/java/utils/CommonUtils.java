@@ -1,12 +1,9 @@
 package utils;
 
-import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AutomationName;
 import io.appium.java_client.remote.MobileCapabilityType;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -18,7 +15,6 @@ import java.io.InputStreamReader;
 import java.net.*;
 import java.time.Duration;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Properties;
 
 
@@ -46,7 +42,7 @@ public class CommonUtils {
         caps.setCapability("appActivity", "com.wavar.view.activity.PostCommentReplyActivity - Wavar");   // Replace with your main activity's name
         //caps.setCapability("app", "C:\\Users\\Aditya Pawar\\eclipse-workspace\\TestDemoQA\\src\\test\\app\\WavarApp_V_1.107_QA.apk");
         caps.setCapability("autoGrantPermissions", "true");
-        caps.setCapability("udid", "192.168.1.110:5050");
+        //caps.setCapability("udid", "192.168.1.110:5050");
         caps.setCapability("automationName", "UiAutomator2");
         caps.setCapability(MobileCapabilityType.AUTOMATION_NAME,AutomationName.ANDROID_UIAUTOMATOR2);
         //driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
