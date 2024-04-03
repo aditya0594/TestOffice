@@ -98,7 +98,7 @@ public class TestBase {
         w.until(ExpectedConditions.presenceOfElementLocated((By) element));
     }
 
-
+//commite
     public static void swipe(int startX, int startY,int endX,int endY) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         HashMap<String, Object> scrollObject = new HashMap<>();
@@ -123,6 +123,7 @@ public class TestBase {
         // Slide_touch_mobile(531, 51, 463, 1094);
 
     }
+    //
     public static void pressAndRelease(int startX, int startY, int endX,int endY) {
         // Create a pointer input (finger simulation)
         PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
